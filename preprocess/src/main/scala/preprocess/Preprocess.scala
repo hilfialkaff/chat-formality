@@ -77,14 +77,10 @@ object Preprocess {
         
         if (countSentTotal != 0) {
           sentStream.print(day + ',' + (countSentFormal.toFloat/countSentTotal*100) + ',' + countSentTotal + '\n')
-        } else {
-          sentStream.print(day + ',' + 0.toString + '\n')
         }
         
         if (countRecvTotal != 0 ) {
           recvStream.print(day + ',' + (countRecvFormal.toFloat/countRecvTotal*100) + ',' + countRecvTotal + '\n')
-        } else {
-          recvStream.print(day + ',' + 0.toString + +',' + 1.toString + '\n')
         }
         
         totalStream.print(day + ',' + ((countSentFormal + countRecvFormal.toFloat)/(countRecvTotal + countSentTotal) *100)
