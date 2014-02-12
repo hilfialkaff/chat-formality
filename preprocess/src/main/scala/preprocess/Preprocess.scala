@@ -50,7 +50,8 @@ object Preprocess {
       val recvStream = new PrintStream(recvFile)
       val totalStream = new PrintStream(totalFile)
       
-      for((day, chats) <- conversation) {
+      for(day <- conversation.keys.toSeq.sorted) {
+        val chats = conversation(day)
         var countSentFormal = 0
         var countSentTotal = 0
         var countRecvFormal = 0
