@@ -45,8 +45,10 @@ object Preprocess {
     for ((person, conversation) <- conversations) {
       val sentFile = new FileOutputStream(new File(outputPath + person + '_' + "sent"), false)
       val recvFile = new FileOutputStream(new File(outputPath + person + '_' + "recv"), false)
+      val totalFile = new FileOutputStream(new File(outputPath + person + '_' + "total"), false)
       val sentStream = new PrintStream(sentFile)
       val recvStream = new PrintStream(recvFile)
+      val totalStream = new PrintStream(totalFile)
       
       for((day, chats) <- conversation) {
         var countSentFormal = 0
@@ -83,10 +85,14 @@ object Preprocess {
         } else {
           recvStream.print(day + ',' + 0.toString + +',' + 1.toString + '\n')
         }
+        
+        totalStream.print(day + ',' + ((countSentFormal + countRecvFormal.toFloat)/(countRecvTotal + countSentTotal) *100)
+            + ',' + (countRecvTotal + countSentTotal) + '\n')
       }
       
       sentStream.close()
       recvStream.close()
+      totalStream.close()
     }
   }
 }
