@@ -52,6 +52,8 @@ object Preprocess {
         var countSentTotal = 0
         var countRecvFormal = 0
         var countRecvTotal = 0
+        var sentFormalityScore = 0.0
+        var recvFormalityScore = 0.0
         
         for (chat <- chats) {
           if (chat.getIsSent()) {
@@ -72,13 +74,15 @@ object Preprocess {
         }
         
         if (countSentTotal != 0) {
-          outStream.print(day + ",sent," + (countSentFormal.toFloat/countSentTotal*100) + ',' + countSentTotal + '\n')
+          sentFormalityScore = (countSentFormal.toFloat/countSentTotal*100)
         }
         
         if (countRecvTotal != 0 ) {
-          outStream.print(day + ",recv," + (countRecvFormal.toFloat/countRecvTotal*100) + ',' + countRecvTotal + '\n')
+          recvFormalityScore = (countRecvFormal.toFloat/countRecvTotal*100)
         }
         
+        outStream.print(day + ',' + sentFormalityScore + ',' + countSentTotal + ',' + recvFormalityScore
+            + ',' + countRecvTotal + '\n')
         outStream.print(day + ",total," + ((countSentFormal + countRecvFormal.toFloat)/(countRecvTotal + countSentTotal) *100)
             + ',' + (countRecvTotal + countSentTotal) + '\n')
       }
