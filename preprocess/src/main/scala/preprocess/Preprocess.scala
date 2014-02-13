@@ -15,6 +15,12 @@ object Preprocess {
     val dataFile = new File(dataPath).list()
     var dictWords = Map[String, Boolean]()
     var conversations = Map[String, Map[String, ListBuffer[Chat]]]()
+    val informalWords = Map[String, Int](
+        "lol" -> 5,
+        "yo" -> 5,
+        "fosho" -> 20,
+        "damn" -> 20
+        )
     
     /* Load words from dictionary */
     for (word <- io.Source.fromFile(dictPath).getLines) {
@@ -25,7 +31,7 @@ object Preprocess {
     for (fileName <- dataFile.toList) {
       for (line <- io.Source.fromFile(dataPath + fileName).getLines.drop(1)) {
         val personName = fileName.stripSuffix(".csv")
-        val _line = line.split("\",\"")
+        val _line = line.replaceAll("[^a-zA-Z0-9,\" ]", "").split("\",\"")
 	    val date = new Date(_line(3).dropRight(1).toLong * 1000L)
 	    val format = new SimpleDateFormat("yyyy-MM-dd")
         val day = format.format(date)
@@ -45,6 +51,12 @@ object Preprocess {
     for ((person, conversation) <- conversations) {
       val outFile = new FileOutputStream(new File(outputPath + person), false)
       val outStream = new PrintStream(outFile)
+      val totalFile = new FileOutputStream(new File(outputPath + person + "_total"), false)
+      val totalStream = new PrintStream(totalFile)
+      var prevSentFormalityScore = 0.0
+      var prevRecvFormalityScore = 0.0
+      var sentFormalityScore = 0.0
+      var recvFormalityScore = 0.0
       
       for(day <- conversation.keys.toSeq.sorted) {
         val chats = conversation(day)
@@ -52,8 +64,6 @@ object Preprocess {
         var countSentTotal = 0
         var countRecvFormal = 0
         var countRecvTotal = 0
-        var sentFormalityScore = 0.0
-        var recvFormalityScore = 0.0
         
         for (chat <- chats) {
           if (chat.getIsSent()) {
@@ -73,21 +83,30 @@ object Preprocess {
           }
         }
         
-        if (countSentTotal != 0) {
-          sentFormalityScore = (countSentFormal.toFloat/countSentTotal*100)
+        if (countSentTotal < 10) {
+          println()
+          sentFormalityScore = prevSentFormalityScore
+        } else {
+          sentFormalityScore = (countSentFormal.toFloat/countSentTotal*100)          
+          prevSentFormalityScore = sentFormalityScore
         }
         
-        if (countRecvTotal != 0 ) {
+        if (countRecvTotal < 10) {
+          recvFormalityScore = prevRecvFormalityScore
+        } else {
           recvFormalityScore = (countRecvFormal.toFloat/countRecvTotal*100)
+          prevRecvFormalityScore = recvFormalityScore
         }
         
         outStream.print(day + ',' + sentFormalityScore + ',' + countSentTotal + ',' + recvFormalityScore
             + ',' + countRecvTotal + '\n')
-        outStream.print(day + ",total," + ((countSentFormal + countRecvFormal.toFloat)/(countRecvTotal + countSentTotal) *100)
+        totalStream.print(day + ",total," + (recvFormalityScore * countRecvTotal / (countRecvTotal + countSentTotal) +
+            sentFormalityScore * countSentTotal / (countRecvTotal + countSentTotal))
             + ',' + (countRecvTotal + countSentTotal) + '\n')
       }
       
       outStream.close()
+      totalStream.close()
     }
   }
 }
