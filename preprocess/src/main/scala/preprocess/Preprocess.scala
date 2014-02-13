@@ -43,12 +43,8 @@ object Preprocess {
     
     /* Evaluate formality */
     for ((person, conversation) <- conversations) {
-      val sentFile = new FileOutputStream(new File(outputPath + person + '_' + "sent"), false)
-      val recvFile = new FileOutputStream(new File(outputPath + person + '_' + "recv"), false)
-      val totalFile = new FileOutputStream(new File(outputPath + person + '_' + "total"), false)
-      val sentStream = new PrintStream(sentFile)
-      val recvStream = new PrintStream(recvFile)
-      val totalStream = new PrintStream(totalFile)
+      val outFile = new FileOutputStream(new File(outputPath + person), false)
+      val outStream = new PrintStream(outFile)
       
       for(day <- conversation.keys.toSeq.sorted) {
         val chats = conversation(day)
@@ -76,20 +72,18 @@ object Preprocess {
         }
         
         if (countSentTotal != 0) {
-          sentStream.print(day + ',' + (countSentFormal.toFloat/countSentTotal*100) + ',' + countSentTotal + '\n')
+          outStream.print(day + ",sent," + (countSentFormal.toFloat/countSentTotal*100) + ',' + countSentTotal + '\n')
         }
         
         if (countRecvTotal != 0 ) {
-          recvStream.print(day + ',' + (countRecvFormal.toFloat/countRecvTotal*100) + ',' + countRecvTotal + '\n')
+          outStream.print(day + ",recv," + (countRecvFormal.toFloat/countRecvTotal*100) + ',' + countRecvTotal + '\n')
         }
         
-        totalStream.print(day + ',' + ((countSentFormal + countRecvFormal.toFloat)/(countRecvTotal + countSentTotal) *100)
+        outStream.print(day + ",total," + ((countSentFormal + countRecvFormal.toFloat)/(countRecvTotal + countSentTotal) *100)
             + ',' + (countRecvTotal + countSentTotal) + '\n')
       }
       
-      sentStream.close()
-      recvStream.close()
-      totalStream.close()
+      outStream.close()
     }
   }
 }
