@@ -15,12 +15,6 @@ object Preprocess {
     val dataFile = new File(dataPath).list()
     var dictWords = Map[String, Boolean]()
     var conversations = Map[String, Map[String, ListBuffer[Chat]]]()
-    val informalWords = Map[String, Int](
-        "lol" -> 5,
-        "yo" -> 5,
-        "fosho" -> 20,
-        "damn" -> 20
-        )
     
     /* Load words from dictionary */
     for (word <- io.Source.fromFile(dictPath).getLines) {
