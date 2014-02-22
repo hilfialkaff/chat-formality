@@ -1,9 +1,12 @@
 Chat Formality Visualization
 ============================
 
-Visualizing Formality in Social Chat Application
+Visualizing formality in social chat application.
 
-File directories:
+Open ./visualization/index.html to view the visualization.
+
+## Directory structure
+
 * data/
   + All the dataset
   + Script to retrieve all the dataset (Login to Facebook, GMail, etc) should be put here
@@ -12,4 +15,6 @@ File directories:
 * visualization/
   + D3 Visualization
 
-Open the ./visualization/index.html to view the visualization
+
+## Future work
+- Make this to be a service where people can log in to their email and view their conversations' formality.
