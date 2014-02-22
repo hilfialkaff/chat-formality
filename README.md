@@ -11,3 +11,5 @@ File directories:
   + Python pre-processing to give formality score to the dataset
 * visualization/
   + D3 Visualization
+
+Open the ./visualization/index.html to view the visualization
