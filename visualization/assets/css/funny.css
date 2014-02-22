@@ -1,0 +1,7 @@
+.orange-nav {
+    background-image: linear-gradient(to bottom, rgb(248, 30, 252), rgb(74, 235, 16));
+}
+
+p,h1,h2,h3,h4,h5,body {
+    font-family: "Comic Sans MS", cursive, sans-serif;
+}

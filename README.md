@@ -9,5 +9,5 @@ File directories:
   + Script to retrieve all the dataset (Login to Facebook, GMail, etc) should be put here
 * preprocess/
   + Python pre-processing to give formality score to the dataset
-* viz/
+* visualization/
   + D3 Visualization

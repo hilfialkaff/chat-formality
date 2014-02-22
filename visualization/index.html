@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Formality in messages</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+
+    <!-- Le styles -->
+    <link href="./assets/css/bootstrap.css" rel="stylesheet">
+    <link href="./assets/css/custom.css" rel="stylesheet">
+    <style>
+        body {
+            padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+        }
+    </style>
+    <link href="./assets/css/bootstrap-responsive.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+    <script src="../assets/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="./assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="./assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="./assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="./assets/ico/apple-touch-icon-57-precomposed.png">
+    <link rel="shortcut icon" href="./assets/ico/favicon.png">
+</head>
+
+<body>
+
+<div class="navbar  navbar-fixed-top">
+    <div class="navbar-inner orange-nav">
+        <div class="container">
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+            </button>
+            <a class="brand" href="#">Formality in messages</a>
+
+            <div class="nav-collapse collapse">
+                <ul class="nav">
+                    <li><a id="home" href="#Home">Home</a></li>
+
+                    <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Friends<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="#rod" id="rod">Rodrigo</a></li>
+            <li><a href="#rod-split" id="rod-split">Rodrigo (Split)</a></li>
+            <li class="divider"></li>
+            <li><a href="#wojtek" id="wojtek">Wojtek</a></li>
+            <li><a href="#wojtek-split" id="wojtek-split">Wojtek (Split)</a></li>
+            <li class="divider"></li>
+            <li><a href="#clau" id="clau">Claudia</a></li>
+            <li><a href="#clau-split" id="clau-split">Claudia (Split)</a></li>
+            <li class="divider"></li>
+            <li><a href="#jordan" id="jordan">Jordan</a></li>
+            <li><a href="#jordan-split" id="jordan-split">Jordan (Split)</a></li>
+          </ul>
+        </li>
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="container">
+
+
+    </div>
+    <div class="row">
+        <div class="span4">
+
+            <h1>Hello Maciej</h1>
+
+            <p class="less-space">Hover over to see dates</p>
+            <p class ="less-space">If issues arise, please use Firefox
+
+        </div>
+        <div class="span6 guide">
+
+            <img id ="mapkey" src="./assets/img/formal-informal.png">
+
+        </div>
+
+    </div>
+
+</div>
+<!-- /container -->
+
+<div class="container">
+    <div class="row">
+        <div class="span10 " id="graph">
+            <h2 id="friend-header">Welcome! Select a friend to begin.<h2>
+             <iframe id="mainFrame" src="description.html" frameBorder="0" width="1000" height="600"></iframe>
+
+        </div>
+    </div>
+
+</div>
+
+
+<!-- Le javascript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="./assets/js/jquery-2.1.0.min.js"></script>
+<script src="./assets/js/bootstrap.min.js"></script>
+
+<script>
+$(document).ready(function(){
+   $('#rod').click(function() {
+     $("#mainFrame").attr("src", "singlechart_rodrigo.html");
+     $("#mapkey").attr("src", "./assets/img/formal-informal-one.png");
+     document.getElementById("friend-header").innerHTML="Rodrigo";
+    });
+   $('#wojtek').click(function() {
+     $("#mainFrame").attr("src", "singlechart_wojtek.html");
+     $("#mapkey").attr("src", "./assets/img/formal-informal-one.png");
+     document.getElementById("friend-header").innerHTML="Wojtek";
+    });
+   $('#clau').click(function() {
+     $("#mainFrame").attr("src", "singlechart_claudia.html");
+     $("#mapkey").attr("src", "./assets/img/formal-informal-one.png");
+     document.getElementById("friend-header").innerHTML="Claudia";
+    });
+   $('#jordan').click(function() {
+     $("#mainFrame").attr("src", "singlechart_jordan.html");
+     $("#mapkey").attr("src", "./assets/img/formal-informal-one.png");
+     document.getElementById("friend-header").innerHTML="Jordan";
+    });
+   $('#rod-split').click(function() {
+     $("#mainFrame").attr("src", "splitchart_rodrigo.html");
+     $("#mapkey").attr("src", "./assets/img/formal-informal.png");
+     document.getElementById("friend-header").innerHTML="Rodrigo";
+    });
+   $('#wojtek-split').click(function() {
+     $("#mainFrame").attr("src", "splitchart_wojtek.html");
+     $("#mapkey").attr("src", "./assets/img/formal-informal.png");
+     document.getElementById("friend-header").innerHTML="Wojtek";
+    });
+   $('#clau-split').click(function() {
+     $("#mainFrame").attr("src", "splitchart_claudia.html");
+     $("#mapkey").attr("src", "./assets/img/formal-informal.png");
+     document.getElementById("friend-header").innerHTML="Claudia";
+    });
+   $('#jordan-split').click(function() {
+     $("#mainFrame").attr("src", "splitchart_jordan.html");
+     $("#mapkey").attr("src", "./assets/img/formal-informal.png");
+     document.getElementById("friend-header").innerHTML="Jordan";
+    });
+   $('#home').click(function() {
+     $("#mainFrame").attr("src", "description.html");
+     $("#mapkey").attr("src", "./assets/img/formal-informal.png");
+     document.getElementById("friend-header").innerHTML="Welcome!";
+    });
+ });
+</script>
+</body>
+</html>

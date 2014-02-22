@@ -1,0 +1,66 @@
+h1,h2,h3,h4,h5 {
+    font-weight: lighter;
+    letter-spacing: 1.5px;
+
+}
+
+p {
+    font-weight: lighter;
+    font-size: 130%;
+}
+
+h1 {
+    font-size: 51px;
+    margin-bottom: 25px;
+}
+
+
+.navbar .brand {
+    font-size: 18px;
+    letter-spacing: 1px;
+    color: rgb(0,0,0);
+    text-shadow: none;
+}
+
+.orange-nav {
+    background-image: linear-gradient(to bottom, rgb(252, 118, 58), rgb(235, 101, 40));
+}
+
+
+.navbar .nav > li > a {
+    color: rgb(0,0,0);
+    text-shadow: none;
+
+}
+
+svg {
+    width: 960px;
+    height: 500px;
+    border: solid 1px #ccc;
+    font: 10px sans-serif;
+    shape-rendering: crispEdges;
+}
+
+.less-space {
+    margin-bottom:0px;
+}
+
+.guide {
+    margin-top: 40px;
+
+}
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'helvetica neue';
+}
+
+#graph {
+    text-align: center;
+}
+
+#friend-header {
+    text-align: left;
+}
+
